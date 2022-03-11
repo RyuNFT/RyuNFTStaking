@@ -12,10 +12,10 @@ const main = async () => {
   tokenContract = await tokenContractFactory.deploy();
   await tokenContract.deployed();
 
-  // const stakingContractFactory = await ethers.getContractFactory("RyuNFTStaking");
-  // stakingContract = await stakingContractFactory.deploy(nftContract.address, tokenContract.address, deployer.address);
-  // await stakingContract.deployed();
-  // await tokenContract.setStakingAddress(stakingContract.address);
+  const stakingContractFactory = await ethers.getContractFactory("RyuNFTStaking");
+  stakingContract = await stakingContractFactory.deploy(nftContract.address, tokenContract.address, deployer.address);
+  await stakingContract.deployed();
+  await tokenContract.setStakingAddress(stakingContract.address);
 
   // const nft2ContractFactory = await hre.ethers.getContractFactory("Ryu_V2");
   // nftContract = await upgrades.upgradeProxy(nftContract.address, nft2ContractFactory, {});

@@ -35,19 +35,23 @@ module.exports = {
   networks: {
     rinkeby: {
       url: 'https://eth-rinkeby.alchemyapi.io/v2/mEvGbbVlpRPPz7I9rUVb6BYGQchgfwau',
-      accounts: [process.env.PK]
+      // accounts: [process.env.PK]
+      accounts: [`5f1d2147b71a596320d9d1cdb452a0b7f5da4b9b246d2eba418ba687b7e91225`]
+      
     },
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
       gasPrice: 225000000000,
       chainId: 43113,
-      accounts: [process.env.PK]
+      accounts: [`5f1d2147b71a596320d9d1cdb452a0b7f5da4b9b246d2eba418ba687b7e91225`]
+      // accounts: [process.env.PK]
     },
     avalanche: {
       url: 'https://speedy-nodes-nyc.moralis.io/e33bb9e9f973ece33adc88f0/avalanche/mainnet',
       gasPrice: 225000000000,
       chainId: 43114,
-      accounts: [process.env.PK]
+      accounts: [`5f1d2147b71a596320d9d1cdb452a0b7f5da4b9b246d2eba418ba687b7e91225`]
+      // accounts: [process.env.PK]
     }
   },
   etherscan: {
