@@ -183,8 +183,8 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
         // ryuToken.mint(Addr2, fee2);
 
         ryuToken.transfer(_msgSender(), totalClaimed);
-        ryuToken.transfer(ADDR1, totalClaimed);
-        ryuToken.transfer(ADDR2, totalClaimed);
+        ryuToken.transfer(ADDR1, fee1);
+        ryuToken.transfer(ADDR2, fee2);
     }
 
     function claimAll(bool _unstake) external {
@@ -208,12 +208,12 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
             }
         }
 
-        ryuToken.mint(_msgSender(), totalClaimed);
         uint256 fee1 = (totalTaxed * 90) / 100;
         uint256 fee2 = totalTaxed - fee1;
 
-        ryuToken.mint(ADDR1, fee1);
-        ryuToken.mint(ADDR2, fee2);
+        ryuToken.transfer(_msgSender(), totalClaimed);
+        ryuToken.transfer(ADDR1, fee1);
+        ryuToken.transfer(ADDR2, fee2);
     }
 
     function unstake(uint256 tokenId) internal {
@@ -232,9 +232,9 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
         isPaused = !isPaused;
     }
 
-    function withdrawRyu() external onlyOwner {
-        ryuToken.transfer(_msgSender(), ryuToken.balanceOf(address(this)));
-    }
+    // function withdrawRyu() external onlyOwner {
+    //     ryuToken.transfer(_msgSender(), ryuToken.balanceOf(address(this)));
+    // }
 
     function _addNftToStaking(uint256 _tokenId, address _owner) internal {
         stakes[_tokenId] = StakeDetails({

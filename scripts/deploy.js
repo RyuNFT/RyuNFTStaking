@@ -5,17 +5,18 @@ const main = async () => {
   [deployer] = await ethers.getSigners()
 
   const nftContractFactory = await hre.ethers.getContractFactory('Ryu');
-  nftContract = await upgrades.deployProxy(nftContractFactory, [deployer.address, deployer.address], { kind: 'uups', initializer: 'initialize' })
-  await nftContract.deployed();
+  nftContract = await upgrades.deployProxy(nftContractFactory, [], { kind: 'uups', initializer: 'initialize' })
+  const res = await nftContract.deployed();
+  console.log(nftContract, res);
 
-  const tokenContractFactory = await ethers.getContractFactory("RyuToken");
-  tokenContract = await tokenContractFactory.deploy();
-  await tokenContract.deployed();
+  // const tokenContractFactory = await ethers.getContractFactory("RyuToken");
+  // tokenContract = await tokenContractFactory.deploy();
+  // await tokenContract.deployed();
 
-  const stakingContractFactory = await ethers.getContractFactory("RyuNFTStaking");
-  stakingContract = await stakingContractFactory.deploy(nftContract.address, tokenContract.address, deployer.address);
-  await stakingContract.deployed();
-  await tokenContract.setStakingAddress(stakingContract.address);
+  // const stakingContractFactory = await ethers.getContractFactory("RyuNFTStaking");
+  // stakingContract = await stakingContractFactory.deploy(nftContract.address, tokenContract.address, deployer.address);
+  // await stakingContract.deployed();
+  // await tokenContract.setStakingAddress(stakingContract.address);
 
   // const nft2ContractFactory = await hre.ethers.getContractFactory("Ryu_V2");
   // nftContract = await upgrades.upgradeProxy(nftContract.address, nft2ContractFactory, {});
