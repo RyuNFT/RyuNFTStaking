@@ -117,12 +117,12 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
         view
         returns (uint256)
     {
-        StakeDetails memory stake = stakes[_tokenId];
-        require(stake.staked, "This token isn't staked");
+        StakeDetails memory stakeTarget = stakes[_tokenId];
+        require(stakeTarget.staked, "This token isn't staked");
         if (checkOwnership) {
-            require(stake.owner == _msgSender(), "You don't own this token");
+            require(stakeTarget.owner == _msgSender(), "You don't own this token");
         }
-        uint256 stakedDays = (block.timestamp - stake.startTimestamp) / 1 days;
+        uint256 stakedDays = (block.timestamp - stakeTarget.startTimestamp) / 1 days;
         return stakedDays * getDayReward(_tokenId);
     }
 
@@ -217,9 +217,9 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
     }
 
     function unstake(uint256 tokenId) internal {
-        StakeDetails memory stake = stakes[tokenId];
+        StakeDetails memory stakeTarget = stakes[tokenId];
 
-        require(_msgSender() == stake.owner, "You don't own this token");
+        require(_msgSender() == stakeTarget.owner, "You don't own this token");
         delete stakes[tokenId];
         _removeStakeFromOwnerEnumeration(_msgSender(), tokenId);
         nft.safeTransferFrom(address(this), _msgSender(), tokenId);
