@@ -120,9 +120,13 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
         StakeDetails memory stakeTarget = stakes[_tokenId];
         require(stakeTarget.staked, "This token isn't staked");
         if (checkOwnership) {
-            require(stakeTarget.owner == _msgSender(), "You don't own this token");
+            require(
+                stakeTarget.owner == _msgSender(),
+                "You don't own this token"
+            );
         }
-        uint256 stakedDays = (block.timestamp - stakeTarget.startTimestamp) / 1 days;
+        uint256 stakedDays = (block.timestamp - stakeTarget.startTimestamp) /
+            1 days;
         return stakedDays * getDayReward(_tokenId);
     }
 
@@ -232,9 +236,17 @@ contract RyuNFTStaking is Ownable, IERC721Receiver {
         isPaused = !isPaused;
     }
 
-    // function withdrawRyu() external onlyOwner {
-    //     ryuToken.transfer(_msgSender(), ryuToken.balanceOf(address(this)));
-    // }
+    function setAddr1(address target) external onlyOwner {
+        ADDR1 = target;
+    }
+
+    function setAddr2(address target) external onlyOwner {
+        ADDR2 = target;
+    }
+
+    function withdrawRyu() external onlyOwner {
+        ryuToken.transfer(_msgSender(), ryuToken.balanceOf(address(this)));
+    }
 
     function _addNftToStaking(uint256 _tokenId, address _owner) internal {
         stakes[_tokenId] = StakeDetails({

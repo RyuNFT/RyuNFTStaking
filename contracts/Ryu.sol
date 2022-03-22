@@ -32,7 +32,7 @@ contract Ryu is
         __Ownable_init();
         __UUPSUpgradeable_init();
 
-        baseUri = "ipfs://QmUQMQhyqTMd5sAaT2ckZcpXDqAqotKiwJcPUnibjseFrK/";
+        baseUri = "ipfs://QmShG5SvTx4bkUNTpVNwQKkEMhcyM5SmbfQSTGy7sZ9L9S/";
     }
 
     function _authorizeUpgrade(address newImplementation)
