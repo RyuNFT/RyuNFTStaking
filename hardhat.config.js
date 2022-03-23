@@ -33,12 +33,13 @@ module.exports = {
   },
 
   networks: {
-    rinkeby: {
-      url: 'https://eth-rinkeby.alchemyapi.io/v2/mEvGbbVlpRPPz7I9rUVb6BYGQchgfwau',
-      // accounts: [process.env.PK]
-      accounts: [``]
-      
-    },
+    // rinkeby: {
+    //   url: 'https://eth-rinkeby.alchemyapi.io/v2/mEvGbbVlpRPPz7I9rUVb6BYGQchgfwau',
+    //   // accounts: [process.env.PK]
+    //   accounts: [``]
+
+    // },
+
     // fuji: {
     //   url: 'https://api.avax-test.network/ext/bc/C/rpc',
     //   gasPrice: 225000000000,
@@ -46,6 +47,7 @@ module.exports = {
     //   accounts: [``]
     //   // accounts: [process.env.PK]
     // },
+
     avalanche: {
       url: 'https://speedy-nodes-nyc.moralis.io/e33bb9e9f973ece33adc88f0/avalanche/mainnet',
       // gasPrice: 225000000000,

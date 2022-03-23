@@ -1487,7 +1487,7 @@ library StorageSlotUpgradeable {
 
 // OpenZeppelin Contracts v4.4.1 (proxy/ERC1967/ERC1967Upgrade.sol)
 
-pragma solidity ^0.8.2;
+
 
 
 
@@ -2002,7 +2002,7 @@ abstract contract ERC2981PerTokenRoyalties is ERC2981Base {
 // File contracts/Ryu.sol
 
 
-pragma solidity 0.8.3;
+
 
 
 
@@ -2064,6 +2064,10 @@ contract Ryu is
         isLegends[tokenID] = _isLegend;
         imagesID[tokenID] = _imageId;
         _safeMint(receiver, tokenID);
+    }
+
+    function setIsLegend(uint256 tokenId, bool newIsLegend) external onlyOwner {
+        isLegends[tokenId] = newIsLegend;
     }
 
     function airdrops(

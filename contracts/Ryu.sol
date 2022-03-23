@@ -65,6 +65,10 @@ contract Ryu is
         _safeMint(receiver, tokenID);
     }
 
+    function setIsLegend(uint256 tokenId, bool newIsLegend) external onlyOwner {
+        isLegends[tokenId] = newIsLegend;
+    }
+
     function airdrops(
         uint256[] calldata tokenIDs,
         address[] calldata receivers,
